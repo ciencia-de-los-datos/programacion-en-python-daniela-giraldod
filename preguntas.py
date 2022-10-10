@@ -12,7 +12,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 url_timesheet = "https://raw.githubusercontent.com/ciencia-de-los-datos/programacion-en-python-daniela-giraldod/main/data.csv"
-
+!wget --quiet {url_timesheet} -P /tmp/
 
 with open("/tmp/data.csv", "r") as file:
     datos = file.readlines()   
