@@ -11,7 +11,13 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+url_timesheet = "https://raw.githubusercontent.com/ciencia-de-los-datos/programacion-en-python-daniela-giraldod/main/data.csv"
+!wget --quiet {url_timesheet} -P /tmp/
 
+#!ls -1 /tmp/*  #para saber como quedo en la temporal
+
+with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines()   
 
 def pregunta_01():
     """
@@ -21,7 +27,16 @@ def pregunta_01():
     214
 
     """
-    return  100
+    with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines() 
+
+datos = [row.replace("\n", "")for row in datos]
+datos = [row.split("\t")for row in datos]
+
+datos1 = [ row[1] for row in datos]
+datos1 = [int(string) for string in datos1] #volver numeros
+
+    return  (sum(datos1))
 
 
 def pregunta_02():
