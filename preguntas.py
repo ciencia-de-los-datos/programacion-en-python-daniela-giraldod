@@ -48,23 +48,8 @@ def pregunta_02():
     ]
 
     """
-    with open("data.csv", "r") as file:
-        datos = file.readlines() 
-        
-    datos = [row.replace("\n", "")for row in datos]
-    datos = [row.split("\t")for row in datos]
-
-    datos1 = [ row[0] for row in datos]
-
-    from collections import Counter
-
-    resultado = Counter(datos1)
-    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
-
-    from operator import itemgetter
-    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-
-    return resultado
+    
+    return 
 
 
 def pregunta_03():
@@ -82,32 +67,8 @@ def pregunta_03():
     ]
 
     """
-    with open("data.csv", "r") as file:
-      datos = file.readlines() 
-        
     
-    datos = [row.replace("\n", "")for row in datos]
-    datos = [row.split("\t")for row in datos]
-
-    datos1 = [(row[0], row[1]) for row in datos]
-
-    contador = {}
-    for key,value in datos1:
-        if key in contador:
-            contador[key] += int(value)
-        else:
-        contador[key] = int(value)
-
-
-    contador = [(key,contador[key]) for key in contador]
-    contador
-
-    from operator import itemgetter
-    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-
-
-    return contador
-
+    return 
 
 def pregunta_04():
     """
