@@ -21,7 +21,7 @@ def pregunta_01():
 
     """
     with open("data.csv", "r") as file:
-    datos = file.readlines() 
+        datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
