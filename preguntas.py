@@ -82,8 +82,29 @@ def pregunta_03():
     ]
 
     """
+    with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [(row[0], row[1]) for row in datos]
+
+    contador = {}
+    for key,value in datos1:
+        if key in contador:
+        contador[key] += int(value)
+        else:
+         contador[key] = int(value)
+
+
+    contador = [(key,contador[key]) for key in contador]
+    contador
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
     
-    return 
+    return contador
 
 def pregunta_04():
     """
@@ -107,7 +128,26 @@ def pregunta_04():
     ]
 
     """
-    return
+    with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [row[2] for row in datos]
+
+    datos1 = [line.split(",") for line in datos1] 
+    datos1 = [z[0].split("-")[1] for z in datos1[0:]] 
+
+    from collections import Counter
+
+    resultado = Counter(datos1)
+    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
+
+    from operator import itemgetter
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    
+    return resultado
 
 
 def pregunta_05():
@@ -125,7 +165,40 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("/tmp/data.csv", "r") as file:
+  datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [(row[0], row[1]) for row in datos]
+
+    contador = {}
+    maximos = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] = value
+          maximos[key] += value
+        else:
+          contador[key] = value
+          maximos[key] = value
+
+    contador = [[key,contador[key],maximos[key]] for key in contador]
+    contador
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    contador
+
+    #contador[1][1] = min(contador[1][1])
+
+    for i in range(len(contador)):
+       contador[i][1] = max(contador[i][1])
+       contador[i][2] = min(contador[i][2])
+
+    tuplas = [(row[0], int(row[1]),int(row[2])) for row in contador]
+    
+    return tuplas
 
 
 def pregunta_06():
