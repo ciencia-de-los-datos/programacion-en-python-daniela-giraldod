@@ -217,7 +217,42 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [row[4] for row in datos]
+
+
+    datos1 = [listas.split(",") for listas in datos1]
+    datos1 = [letras for datos1 in datos1 for letras in datos1]  #para volver lista de listas en solo diccionario
+    datos1 = [listas.split(":") for listas in datos1]
+
+    minimos = {}
+    maximos = {}
+    for key,value in datos1:
+        if key in minimos:
+          minimos[key] += value+","
+          maximos[key] += value+","
+        else:
+          minimos[key] = value+","
+          maximos[key] = value+","
+
+    contador = [[key,minimos[key],maximos[key]] for key in minimos]
+    contador
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    
+    for i in range(len(contador)):
+    # contador[i][1] = filter(lambda element: element != ",", contador[i][1])
+    contador[i][1] = max(contador[i][1])
+        contador[i][2] = filter(lambda element: element != ",", contador[i][2])
+   contador[i][2] = min(contador[i][2])
+
+    return contador
 
 
 def pregunta_07():
@@ -241,7 +276,30 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open("/tmp/data.csv", "r") as file:
+    datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [[row[1], row[0]] for row in datos]
+
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += list(value)
+        else:
+          contador[key] = list(value)
+
+
+    contador = [(key,contador[key]) for key in contador]
+    contador = list(contador)
+    contador
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+
+    return contador
 
 
 def pregunta_08():
