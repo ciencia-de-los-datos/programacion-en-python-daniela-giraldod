@@ -76,7 +76,7 @@ def pregunta_03():
     ]
 
     """
-    with open("/tmp/data.csv", "r") as file:
+    with open("data.csv", "r") as file:
     datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
@@ -122,7 +122,7 @@ def pregunta_04():
     ]
 
     """
-    with open("/tmp/data.csv", "r") as file:
+    with open("data.csv", "r") as file:
     datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
@@ -159,8 +159,8 @@ def pregunta_05():
     ]
 
     """
-    with open("/tmp/data.csv", "r") as file:
-  datos = file.readlines() 
+    with open("data.csv", "r") as file:
+    datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
@@ -217,7 +217,7 @@ def pregunta_06():
     ]
 
     """
-    with open("/tmp/data.csv", "r") as file:
+    with open("data.csv", "r") as file:
     datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
@@ -276,7 +276,7 @@ def pregunta_07():
     ]
 
     """
-    with open("/tmp/data.csv", "r") as file:
+    with open("data.csv", "r") as file:
     datos = file.readlines() 
 
     datos = [row.replace("\n", "")for row in datos]
