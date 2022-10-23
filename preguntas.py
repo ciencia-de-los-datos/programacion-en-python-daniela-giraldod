@@ -48,7 +48,9 @@ def pregunta_02():
     ]
 
     """
-
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+    
     datos1 = [ row[0] for row in datos]
 
     from collections import Counter
