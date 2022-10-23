@@ -48,10 +48,13 @@ def pregunta_02():
     ]
 
     """
+    with open("data.csv", "r") as file:
+        datos = file.readlines() 
+    
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
     
-    datos1 = [ row[0] for row in datos]
+    datos1 = [row[0] for row in datos]
 
     from collections import Counter
 
@@ -59,8 +62,7 @@ def pregunta_02():
     resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
 
     from operator import itemgetter
-    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-    
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave    
 
     return  resultado
 
