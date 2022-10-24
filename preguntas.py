@@ -317,6 +317,9 @@ def pregunta_12():
     }
 
     """
+    with open("data.csv", "r") as file:
+        datos = file.readlines() 
+    
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.split("\t") for line in datos]
 
