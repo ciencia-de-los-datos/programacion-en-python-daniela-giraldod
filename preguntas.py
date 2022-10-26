@@ -83,7 +83,7 @@ def pregunta_03():
 
     """
     datos = [row.replace("\n", "")for row in datos]
-    datos = [row.split("\t")for row in datos]
+    datos = [row.replace("\t",",")for row in datos]
 
     datos1 = [(row[0], row[1]) for row in datos]
 
