@@ -229,7 +229,7 @@ def pregunta_07():
     contador = [(key,contador[key]) for key in contador]  
 
     from operator import itemgetter
-    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    contador.sort(reverse=False)  #ordenar de acuerdo a llave
         
     return contador
 
