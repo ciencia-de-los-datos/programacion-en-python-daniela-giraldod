@@ -208,8 +208,31 @@ def pregunta_07():
     ]
 
     """
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
     
-    return
+    
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [[row[1], row[0]] for row in datos]
+
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += list(value)
+        else:
+          contador[key] = list(value)
+
+
+    contador = [(key,contador[key]) for key in contador]
+    contador = list(contador)
+    
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+        
+    return contador
 
 
 def pregunta_08():
@@ -234,7 +257,28 @@ def pregunta_08():
     ]
 
     """
-    return
+     with open("data.csv", "r") as file:
+        datos = file.readlines()
+    
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [[row[1], row[0]] for row in datos]
+
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += list(value)
+        else:
+          contador[key] = list(value)
+
+    contador = [(key,set(contador[key])) for key in contador]
+    contador = list(contador)
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    
+    return contador
 
 
 def pregunta_09():
