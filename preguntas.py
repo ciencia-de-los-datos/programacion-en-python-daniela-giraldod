@@ -221,9 +221,9 @@ def pregunta_07():
     contador = {}
     for key,value in datos11:
         if key in contador:
-          contador[key] += list[value]
+          contador[key] += value
         else:
-          contador[key] = list[value]
+          contador[key] = value
 
 
     contador = [(key,contador[key]) for key in contador]
