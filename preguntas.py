@@ -213,7 +213,7 @@ def pregunta_07():
     
     
     datos = [row.replace("\n", "")for row in datos]
-    datos = [row.split("\t")for row in datos]
+    datos = [row.replace("\t")for row in datos]
     datos = [row.split(",")for row in datos]
     datos = [row[0:2] for row in datos]
     datos11 = [[row[1], row[0]] for row in datos]
