@@ -187,8 +187,9 @@ def pregunta_06():
         datos = file.readlines()
         
     datos = [row.replace("\n", "")for row in datos]
-    datos = [row.split("\t")for row in datos]
+    datos = [row.replace("\t",",")for row in datos]
 
+    datos = [row.split(",") for row in data]
     datos1 = [row[4] for row in datos]
 
 
