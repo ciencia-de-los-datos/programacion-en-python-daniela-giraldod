@@ -183,38 +183,9 @@ def pregunta_06():
     ]
 
     """
-     with open("data.csv", "r") as file:
-        datos = file.readlines()
-        
-    datos = [row.replace("\n", "")for row in datos]
-    datos = [row.replace("\t",",")for row in datos]
-
-    datos = [row.split(",") for row in data]
-    datos1 = [row[4] for row in datos]
-
-
-    datos1 = [listas.split(",") for listas in datos1]
-    datos1 = [letras for datos1 in datos1 for letras in datos1]  #para volver lista de listas en solo diccionario
-    datos1 = [listas.split(":") for listas in datos1]
-
-    minimos = {}
-    maximos = {}
-    for key,value in datos1:
-        if key in minimos:
-          minimos[key] += value+","
-          maximos[key] += value+","
-        else:
-          minimos[key] = value+","
-          maximos[key] = value+","
-
-    contador = [(key,minimos[key],maximos[key]) for key in minimos]
-    contador
-
-    from operator import itemgetter
-    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
     
 
-    return contador
+    return 
 
 
 def pregunta_07():
