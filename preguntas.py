@@ -257,7 +257,29 @@ def pregunta_09():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos2 = [row[4] for row in datos]
+
+    datos2 = [listas.split(",") for listas in datos2]
+    datos2 = [letras for datos2 in datos2 for letras in datos2]  #para volver lista de listas en solo diccionario
+    datos2 = [listas.split(":") for listas in datos2]
+    datos22 = [row[0] for row in datos2]
+
+    from collections import Counter
+
+    resultado = Counter(datos22)
+    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
+
+    from operator import itemgetter
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    resultado = dict(resultado)
+    
+    return resultado
 
 
 def pregunta_10():
@@ -278,7 +300,9 @@ def pregunta_10():
 
 
     """
-    
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+        
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
 
