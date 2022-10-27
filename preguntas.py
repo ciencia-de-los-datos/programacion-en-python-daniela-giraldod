@@ -82,6 +82,9 @@ def pregunta_03():
     ]
 
     """
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+    
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.replace("\t",",")for row in datos]
 
