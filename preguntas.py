@@ -125,6 +125,8 @@ def pregunta_04():
     ]
 
     """
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
 
@@ -159,7 +161,39 @@ def pregunta_05():
     ]
 
     """
-    
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [(row[0], row[1]) for row in datos]
+
+    contador = {}
+    maximos = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] = value
+          maximos[key] += value
+        else:
+          contador[key] = value
+          maximos[key] = value
+
+    contador = [[key,contador[key],maximos[key]] for key in contador]
+    contador
+
+    from operator import itemgetter
+    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    contador
+
+    #contador[1][1] = min(contador[1][1])
+
+    for i in range(len(contador)):
+       contador[i][1] = max(contador[i][1])
+       contador[i][2] = min(contador[i][2])
+
+    tuplas = [(row[0], int(row[1]),int(row[2])) for row in contador]
+
+    tuplas
     return 
 
 
