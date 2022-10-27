@@ -88,14 +88,14 @@ def pregunta_03():
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.replace("\t",",")for row in datos]
 
-    data = [row[2] for row in datos]
-    data = [i.split('-') for i in data]
-    data = [mes[1] for mes in data]
-    suma = {mes: 0 for mes in data}
+    datos = [row[2] for row in datos]
+    datos = [i.split('-') for i in datos]
+    datos = [mes[1] for mes in datos]
+    suma = {mes: 0 for mes in datos}
     
     sum = 0
     
-    for i in data:
+    for i in datos:
        suma[i] = suma[i] + 1
     
     
