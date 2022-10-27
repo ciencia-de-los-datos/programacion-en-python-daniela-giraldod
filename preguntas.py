@@ -97,14 +97,11 @@ def pregunta_03():
         else:
           contador[key] = int(value)
 
-    contador = [(key,contador[key]) for key in contador]
+    punto3 = []
+    for key in sorted(contador.keys()):
+        punto3.append((key,contador[key]))
     
-    from operator import itemgetter
-    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-    
-    contador = list(contador)  
-    
-    return contador
+    return punto3
 
 def pregunta_04():
     """
