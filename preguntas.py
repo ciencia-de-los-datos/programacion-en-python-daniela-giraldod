@@ -293,8 +293,30 @@ def pregunta_08():
     ]
 
     """
-     
-    return 
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+        
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos11 = [[row[1], row[0]] for row in datos]
+
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += [value]
+        else:
+          contador[key] = [value]
+
+    ocho = [(key,contador[key]) for key in contador]
+    ocho = [(row[0], list(set(row[1]))) for row in ocho] 
+    ocho = [(row[0], sorted(row[1])) for row in ocho]     
+
+
+    from operator import itemgetter
+    ocho.sort(reverse=False)  #ordenar de acuerdo a llave
+    
+    return  ocho
 
 
 def pregunta_09():
