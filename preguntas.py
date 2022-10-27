@@ -98,7 +98,9 @@ def pregunta_03():
     
     from operator import itemgetter
     contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-        
+    
+    contador = list(contador)  
+    
     return contador
 
 def pregunta_04():
