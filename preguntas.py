@@ -88,20 +88,21 @@ def pregunta_03():
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.replace("\t",",")for row in datos]
 
-    datos1 = [(row[0], row[1]) for row in datos]
-
-    contador = {}
-    for key,value in datos1:
-        if key in contador:
-          contador[key] += int(value)
-        else:
-          contador[key] = int(value)
-
-    punto3 = []
-    for key in sorted(contador.keys()):
-        punto3.append((key,contador[key]))
+    data = [row[2] for row in datos]
+    data = [i.split('-') for i in data]
+    data = [mes[1] for mes in data]
+    suma = {mes: 0 for mes in data}
     
-    return punto3
+    sum = 0
+    
+    for i in data:
+       suma[i] = suma[i] + 1
+    
+    
+    suma = [(key, value) for key, value in suma.items()]
+    suma.sort(key=lambda x: x[0])
+    
+    return suma
 
 def pregunta_04():
     """
