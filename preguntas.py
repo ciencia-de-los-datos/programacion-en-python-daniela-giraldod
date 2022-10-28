@@ -161,35 +161,24 @@ def pregunta_05():
     datos = [row.replace("\n", "")for row in datos]
     datos = [row.split("\t")for row in datos]
 
-    datos11 = [(row[0], row[1]) for row in datos]
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
 
-    contador = {}
-    maximos = {}
-    for key,value in datos11:
-        if key in contador:
-          contador[key] = value
-          maximos[key] += value
+
+    counter = {}
+    for row in datos:
+        value = int(row[1])
+        if row[0] in counter.keys():
+             if value > counter[row[0]][0]:
+                counter[row[0]][0] = value
+             if value < counter[row[0]][1]:
+                counter[row[0]][1] = value
         else:
-          contador[key] = value
-          maximos[key] = value
+          counter[row[0]] = [value, value]
+        
+    punto5 = [(r[0], r[1][0], r[1][1]) for r in sorted(counter.items())]
 
-    contador = [[key,contador[key],maximos[key]] for key in contador]
-    contador
-
-    from operator import itemgetter
-    contador.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
-    contador
-
-    #contador[1][1] = min(contador[1][1])
-
-    for i in range(len(contador)):
-       contador[i][1] = max(contador[i][1])
-       contador[i][2] = min(contador[i][2])
-
-    tuplas = [(row[0], int(row[1]),int(row[2])) for row in contador]
-
-    tuplas
-    return 
+    return punto5
 
 
 def pregunta_06():
