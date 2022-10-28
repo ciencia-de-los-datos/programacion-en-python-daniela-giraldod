@@ -86,23 +86,17 @@ def pregunta_03():
       datos = file.readlines() 
     
     datos = [row.replace("\n", "")for row in datos]
-    datos = [row.replace("\t",",")for row in datos]
+    datos = [row.split("\t")for row in datos]
 
-    datos = [row[2] for row in datos]
-    datos = [i.split('-') for i in datos]
-    datos = [mes[1] for mes in datos]
-    suma = {mes: 0 for mes in datos}
-    
-    sum = 0
-    
-    for i in datos:
-       suma[i] = suma[i] + 1
-    
-    
-    suma = [(key, value) for key, value in suma.items()]
-    suma.sort(key=lambda x: x[0])
-    
-    return suma
+    contador = {}
+    for row in datos:
+        if row[0] in contador.keys():
+          contador[row[0]] += int(row[1])
+        else:
+          contador[row[0]] = int(row[1])
+
+
+    return sorted(contador.items())
 
 def pregunta_04():
     """
