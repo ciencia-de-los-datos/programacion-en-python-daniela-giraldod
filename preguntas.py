@@ -201,9 +201,31 @@ def pregunta_06():
     ]
 
     """
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
     
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
 
-    return 
+    
+    contador = {}
+    for row in datos:
+        pairs = row[4].split(',')
+        for pair in pairs:
+            value = pair.split(':')
+            value[1] = int(value[1])
+            if value[0] in contador.keys():
+                if value[1] > contador[value[0]][0]:
+                    contador[value[0]][0] = value[1]
+                if value[1] < contador[value[0]][1]:
+                    contador[value[0]][1] = value[1]
+            else:
+                contador[value[0]] = [value[1], value[1]]
+                
+        punto6 = [(r[0], r[1][1], r[1][0]) for r in sorted(contador.items())]
+        
+    return punto6
+ 
 
 
 def pregunta_07():
