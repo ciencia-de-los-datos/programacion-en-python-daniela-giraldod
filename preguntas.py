@@ -12,7 +12,6 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
-
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -21,7 +20,17 @@ def pregunta_01():
     214
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines() 
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [ row[1] for row in datos]
+    
+    datos1 = [int(string) for string in datos1] #volver numeros
+
+    return  (sum(datos1))
 
 
 def pregunta_02():
@@ -39,7 +48,23 @@ def pregunta_02():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines() 
+    
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+    
+    datos1 = [row[0] for row in datos]
+
+    from collections import Counter
+
+    resultado = Counter(datos1)
+    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
+
+    from operator import itemgetter
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave    
+
+    return  resultado
 
 
 def pregunta_03():
@@ -57,8 +82,21 @@ def pregunta_03():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+    
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
 
+    contador = {}
+    for row in datos:
+        if row[0] in contador.keys():
+          contador[row[0]] += int(row[1])
+        else:
+          contador[row[0]] = int(row[1])
+
+
+    return sorted(contador.items())
 
 def pregunta_04():
     """
@@ -82,7 +120,25 @@ def pregunta_04():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [row[2] for row in datos]
+
+    datos1 = [line.split(",") for line in datos1] 
+    datos1 = [z[0].split("-")[1] for z in datos1[0:]] 
+
+    from collections import Counter
+
+    resultado = Counter(datos1)
+    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
+
+    from operator import itemgetter
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    
+    return resultado 
 
 
 def pregunta_05():
@@ -100,7 +156,27 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+ 
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+
+    counter = {}
+    for row in datos:
+        value = int(row[1])
+        if row[0] in counter.keys():
+             if value > counter[row[0]][0]:
+                counter[row[0]][0] = value
+             if value < counter[row[0]][1]:
+                counter[row[0]][1] = value
+        else:
+          counter[row[0]] = [value, value]
+        
+    punto5 = [(r[0], r[1][0], r[1][1]) for r in sorted(counter.items())]
+
+    return punto5
 
 
 def pregunta_06():
@@ -125,7 +201,31 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+      datos = file.readlines() 
+    
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    
+    contador = {}
+    for row in datos:
+        pairs = row[4].split(',')
+        for pair in pairs:
+            value = pair.split(':')
+            value[1] = int(value[1])
+            if value[0] in contador.keys():
+                if value[1] > contador[value[0]][0]:
+                    contador[value[0]][0] = value[1]
+                if value[1] < contador[value[0]][1]:
+                    contador[value[0]][1] = value[1]
+            else:
+                contador[value[0]] = [value[1], value[1]]
+                
+        punto6 = [(r[0], r[1][1], r[1][0]) for r in sorted(contador.items())]
+        
+    return punto6
+ 
 
 
 def pregunta_07():
@@ -149,7 +249,29 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+        
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.replace("\t",",")for row in datos]
+    datos = [row.split(",")for row in datos]
+    datos = [row[0:2] for row in datos]
+    datos11 = [(int(row[1]), row[0])for row in datos]
+
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += [value]
+        else:
+          contador[key] = [value]
+
+
+    contador = [(key,contador[key]) for key in contador]  
+
+    from operator import itemgetter
+    contador.sort(reverse=False)  #ordenar de acuerdo a llave
+        
+    return contador
 
 
 def pregunta_08():
@@ -174,7 +296,32 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+        
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.replace("\t",",")for row in datos]
+    datos = [row.split(",") for row in datos]   
+
+    datos = [row[0:2] for row in datos]
+    datos11 = [(int(row[1]), row[0]) for row in datos] 
+   
+    contador = {}
+    for key,value in datos11:
+        if key in contador:
+          contador[key] += [value]
+        else:
+          contador[key] = [value]
+
+    ocho = [(key,contador[key]) for key in contador]
+    ocho = [(row[0], list(set(row[1]))) for row in ocho] 
+    ocho = [(row[0], sorted(row[1])) for row in ocho]     
+
+
+    from operator import itemgetter
+    ocho.sort(reverse=False)  #ordenar de acuerdo a llave
+    
+    return  ocho
 
 
 def pregunta_09():
@@ -197,7 +344,29 @@ def pregunta_09():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos2 = [row[4] for row in datos]
+
+    datos2 = [listas.split(",") for listas in datos2]
+    datos2 = [letras for datos2 in datos2 for letras in datos2]  #para volver lista de listas en solo diccionario
+    datos2 = [listas.split(":") for listas in datos2]
+    datos22 = [row[0] for row in datos2]
+
+    from collections import Counter
+
+    resultado = Counter(datos22)
+    resultado = list(resultado.items()) #convertir diccionario a listas de tuplas
+
+    from operator import itemgetter
+    resultado.sort(key=itemgetter(0), reverse=False)  #ordenar de acuerdo a llave
+    resultado = dict(resultado)
+    
+    return resultado
 
 
 def pregunta_10():
@@ -218,7 +387,16 @@ def pregunta_10():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+        
+    datos = [row.replace("\n", "")for row in datos]
+    datos = [row.split("\t")for row in datos]
+
+    datos1 = [[row[0], row[3].split(","),row[4].split(",")] for row in datos]
+    tuplas = [(row[0], len(row[1]),len(row[2])) for row in datos1]
+    
+    return tuplas
 
 
 def pregunta_11():
@@ -239,7 +417,28 @@ def pregunta_11():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.split("\t") for line in datos]
+
+    datos = [(row[1],row[3].split(",")) for row in datos]
+
+    datos = [list(zip(row[0]*len(row[1]), row[1])) for row in datos]
+
+    total = []
+
+    for x in datos:
+        for y in x:
+            total.append(y)
+    
+    dicc = dict(sorted({row[1]:0 for row in set(total)}.items()))
+
+    for x in total:
+        dicc[x[1]] = dicc[x[1]]+int(x[0])
+
+    return dicc
 
 
 def pregunta_12():
@@ -257,4 +456,24 @@ def pregunta_12():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        datos = file.readlines() 
+    
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.split("\t") for line in datos]
+
+    datos = [list(zip(row[0]*len(row[4].split(",")),row[4].split(","))) for row in datos]
+
+    Resultado = []
+
+    for i in datos:
+        for y in i:
+            Resultado.append((y[0],y[1].split(":")[1]))
+    
+    dicc = {row[0]:0 for row in sorted(Resultado)}
+
+    for x in Resultado:
+        dicc[x[0]] += int(x[1])
+
+    
+    return dicc
